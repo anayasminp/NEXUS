@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam — Descubra e entenda seu tempo de tela</title>
+<meta name="description" content="Sam é uma experiência interativa de conscientização sobre tempo de tela: descubra quanto tempo você dedica às telas, entenda os impactos e crie um plano para mudar.">
+<meta property="og:title" content="Sam — Descubra e entenda seu tempo de tela">
+<meta property="og:description" content="Uma experiência interativa de conscientização sobre tempo de tela e bem-estar digital.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind.config.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-linen text-bark antialiased">
+
+<svg width="0" height="0" aria-hidden="true">
+  <symbol id="logo-eye" viewBox="0 0 64 64">
+    <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+      <line x1="32" y1="4" x2="32" y2="12"/>
+      <line x1="18" y1="7" x2="22" y2="14"/>
+      <line x1="46" y1="7" x2="42" y2="14"/>
+    </g>
+    <path d="M6 38 C16 22, 48 22, 58 38 C48 54, 16 54, 6 38 Z" fill="currentColor"/>
+    <circle cx="32" cy="38" r="11" fill="#F0E2CB"/>
+    <rect x="27" y="30" width="10" height="16" rx="2.5" fill="#F0E2CB" stroke="#4A2E1F" stroke-width="1.6"/>
+    <line x1="30" y1="43.5" x2="34" y2="43.5" stroke="#4A2E1F" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+  <div id="splash" class="splash fixed inset-0 z-50 bg-linen flex items-center justify-center transition-opacity duration-700">
+  <div class="eye-logo text-bark w-24 h-24 md:w-28 md:h-28 absolute left-1/2 -translate-x-1/2">
+    <svg viewBox="0 0 64 64" class="w-full h-full" role="img" aria-label="Sam — olho com pupila de celular">
+      <clipPath id="eyeClip"><path d="M6 38 C16 22, 48 22, 58 38 C48 54, 16 54, 6 38 Z"/></clipPath>
+      <g clip-path="url(#eyeClip)">
+        <rect class="eyelid-top" x="0" y="0" width="64" height="40" fill="#F7EFE1"/>
+        <rect class="eyelid-bottom" x="0" y="36" width="64" height="34" fill="#F7EFE1"/>
+      </g>
+      <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+        <line x1="32" y1="4" x2="32" y2="12"/>
+        <line x1="18" y1="7" x2="22" y2="14"/>
+        <line x1="46" y1="7" x2="42" y2="14"/>
+      </g>
+      <path d="M6 38 C16 22, 48 22, 58 38 C48 54, 16 54, 6 38 Z" fill="currentColor"/>
+      <rect x="27" y="30" width="10" height="16" rx="2.5" fill="#F0E2CB" stroke="#4A2E1F" stroke-width="1.6"/>
+      <line x1="30" y1="43.5" x2="34" y2="43.5" stroke="#4A2E1F" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+<div id="app" class="relative min-h-screen">
+
+  <header id="site-header" class="fixed top-0 inset-x-0 z-40 bg-linen/90 backdrop-blur border-b border-sand/40 opacity-0 transition-opacity duration-700 pointer-events-none">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      <a href="#portal-hero" class="flex items-center gap-2.5 text-bark">
+        <svg class="w-8 h-8"><use href="#logo-eye"/></svg>
+        <span class="leading-tight">
+          <span class="block font-display font-semibold text-lg">SAM</span>
+          <span class="hidden sm:block text-[10px] uppercase tracking-widest text-clay">Sistema de Amparo à Mente</span>
+        </span>
+      </a>
+      <nav id="nav-links" class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#portal-hero" class="hover:text-clay transition-colors">Início</a>
+        <a href="#entenda" class="hover:text-clay transition-colors">Entenda</a>
+        <a href="#impactos" class="hover:text-clay transition-colors">Impactos</a>
+        <a href="#reduzir" class="hover:text-clay transition-colors">Como reduzir</a>
+        <a href="#plano" class="hover:text-clay transition-colors">Meu plano</a>
+        <a href="#fontes" class="hover:text-clay transition-colors">Fontes</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button id="burger" class="md:hidden p-2" aria-label="Abrir menu" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-sand/40 bg-linen">
+      <nav class="px-6 py-4 flex flex-col gap-4 text-sm font-medium">
+        <a href="#portal-hero">Início</a>
+        <a href="#entenda">Entenda</a>
+        <a href="#impactos">Impactos</a>
+        <a href="#reduzir">Como reduzir</a>
+        <a href="#plano">Meu plano</a>
+        <a href="#fontes">Fontes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative">
+
+    <section id="experiencia-top" class="min-h-screen flex flex-col items-center justify-center px-6 relative">
+
+      <div id="s-welcome" class="screen max-w-2xl text-center flex flex-col items-center">
+        <div class="text-bark w-10 h-10 mb-10"><svg class="w-full h-full"><use href="#logo-eye"/></svg></div>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight font-light">“Você controla seu tempo de tela ou seu tempo de tela controla você?”</h1>
+        <div class="w-2 h-2 rounded-full bg-clay mt-10 mb-10"></div>
+        <button id="btn-start" class="bg-bark text-linen rounded-full px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:scale-105 hover:bg-cocoa transition-all duration-300 shadow-lg shadow-sand/40">Quero descobrir</button>
+        <button id="btn-skip" class="mt-8 text-xs text-clay underline underline-offset-4 hover:text-bark transition-colors">Pular abertura</button>
+      </div>
+
+      <div id="s-input" class="screen screen-hidden max-w-2xl text-center w-full">
+        <p class="text-clay text-sm uppercase tracking-widest mb-6">Sem resposta certa ou errada</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-tight">Quanto tempo você passa diante das telas?</h2>
+        <div class="mt-12 flex items-center justify-center gap-3">
+          <input id="time-h" type="number" min="0" max="24" inputmode="numeric" aria-label="Horas por dia" placeholder="0" class="w-24 sm:w-28 text-center font-display text-4xl bg-transparent border-b-2 border-sand focus:border-bark outline-none py-2">
+          <span class="text-clay text-sm">horas</span>
+          <input id="time-m" type="number" min="0" max="59" inputmode="numeric" aria-label="Minutos por dia" placeholder="0" class="w-24 sm:w-28 text-center font-display text-4xl bg-transparent border-b-2 border-sand focus:border-bark outline-none py-2">
+          <span class="text-clay text-sm">min</span>
+        </div>
+        <p id="input-error" class="hidden mt-4 text-sm text-clay bg-cream rounded-xl px-4 py-3 inline-block">Não conseguimos entender esse tempo. Experimente escrever, por exemplo, 4 horas e 30 minutos.</p>
+        <div class="mt-12">
+          <button id="btn-confirm" class="bg-bark text-linen rounded-full px-10 py-4 text-sm font-semibold tracking-widest uppercase hover:scale-105 hover:bg-cocoa transition-all duration-300">Continuar</button>
+        </div>
+      </div>
+
+      <div id="s-check" class="screen screen-hidden max-w-2xl text-center">
+        <h2 class="font-display text-2xl sm:text-3xl font-light">Você passa aproximadamente <span id="check-time" class="font-semibold">—</span> por dia diante das telas.</h2>
+        <p class="mt-6 text-clay">É isso mesmo?</p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <button id="btn-yes" class="bg-bark text-linen rounded-full px-8 py-3.5 text-sm font-semibold tracking-widest uppercase hover:scale-105 hover:bg-cocoa transition-all duration-300">Sim, continuar</button>
+          <button id="btn-fix" class="border border-sand rounded-full px-8 py-3.5 text-sm font-semibold tracking-widest uppercase hover:bg-cream transition-colors">Corrigir</button>
+        </div>
+      </div>
+
+      <div id="s-story" class="screen screen-hidden absolute inset-0 z-20 bg-linen flex flex-col items-center justify-center px-6 cursor-pointer" aria-live="polite">
+        <div class="absolute top-8 left-1/2 -translate-x-1/2 flex gap-2" id="story-dots" aria-hidden="true"></div>
+        <div id="story-stage" class="max-w-3xl text-center"></div>
+        <p id="story-hint" class="absolute bottom-10 text-xs text-clay tracking-widest uppercase">Toque para continuar</p>
+      </div>
+
+      <div id="s-brand" class="screen screen-hidden absolute inset-0 z-20 bg-linen flex flex-col items-center justify-center text-center px-6">
+        <div class="text-bark w-20 h-20 mb-8 reveal"><svg class="w-full h-full"><use href="#logo-eye"/></svg></div>
+        <p class="font-display text-4xl font-semibold tracking-wide reveal">SAM</p>
+        <p class="mt-2 text-clay text-sm uppercase tracking-widest reveal">Sistema de Amparo à Mente</p>
+        <p class="mt-10 font-display text-xl sm:text-2xl font-light reveal">“Agora que você percebeu seu tempo, vamos entender o que ele significa.”</p>
+      </div>
+
+    </section>
+
+    <div id="portal" class="opacity-0 transition-opacity duration-1000 hidden">
+
+      <section id="portal-hero" class="pt-28 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+          <p class="text-xs text-clay uppercase tracking-widest mb-4">Início / Bem-vindo</p>
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+              <h2 class="font-display text-4xl md:text-5xl font-light leading-tight">As telas fazem parte da vida. A questão é entender o espaço que elas ocupam.</h2>
+              <p class="mt-6 text-cocoa leading-relaxed max-w-xl">Celulares, computadores, televisores e tablets estão presentes nos estudos, no trabalho, na comunicação e no lacer. O Sam reúne informações para ajudar você a compreender seus hábitos digitais e decidir conscientemente como usar o seu tempo.</p>
+              <div class="mt-8 flex flex-wrap gap-4">
+                <a href="#experiencia-top" onclick="restartExperience()" class="bg-bark text-linen rounded-full px-8 py-3.5 text-sm font-semibold tracking-widest uppercase hover:bg-cocoa transition-colors">Comece pelo seu tempo</a>
+                <a href="#temas" class="border border-sand rounded-full px-8 py-3.5 text-sm font-semibold tracking-widest uppercase hover:bg-cream transition-colors">Explorar temas</a>
+              </div>
+            </div>
+            <div class="reveal">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&q=80" alt="Pessoa usando um smartphone em um ambiente calmo e claro" class="rounded-3xl w-full object-cover aspect-[4/3] shadow-lg shadow-sand/30">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="entenda" class="py-20 px-6 bg-cream/60">
+        <div class="max-w-6xl mx-auto">
+          <p class="text-xs text-clay uppercase tracking-widest mb-4">Início / Entenda</p>
+          <h2 class="font-display text-3xl md:text-4xl font-light reveal">Seu tempo, em números</h2>
+          <p id="entenda-empty" class="mt-6 reveal">Você ainda não calculou seu tempo de tela.</p>
+          <div id="entenda-grid" class="hidden mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+          <p id="entenda-note" class="hidden mt-6 text-sm text-clay">“Seu tempo não desaparece. Ele está sendo usado em algum lugar.”</p>
+          <div class="mt-8 reveal">
+            <h3 class="font-display text-xl font-semibold">Explore o tema</h3>
+            <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <a href="#impactos" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">01</span><p class="mt-2 font-medium">Sono e telas</p><p class="mt-1 text-sm text-cocoa">Como o uso noturno se relaciona com a rotina de dormir.</p></a>
+              <a href="#impactos" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">02</span><p class="mt-2 font-medium">Atenção e concentração</p><p class="mt-1 text-sm text-cocoa">Notificações, interrupções e estímulos digitais.</p></a>
+              <a href="#impactos" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">03</span><p class="mt-2 font-medium">Redes sociais</p><p class="mt-1 text-sm text-cocoa">Feeds, curtidas e o desenho das plataformas.</p></a>
+              <a href="#economia" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">04</span><p class="mt-2 font-medium">Economia da atenção</p><p class="mt-1 text-sm text-cocoa">Por que é tão fácil continuar rolando.</p></a>
+              <a href="#reduzir" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">05</span><p class="mt-2 font-medium">Crianças e adolescentes</p><p class="mt-1 text-sm text-cocoa">Contexto, desenvolvimento e acompanhamento.</p></a>
+              <a href="#reduzir" class="bg-linen rounded-2xl p-6 border border-sand/40 hover:shadow-md transition-shadow"><span class="text-clay text-sm font-semibold">06</span><p class="mt-2 font-medium">Nem toda tela é igual</p><p class="mt-1 text-sm text-cocoa">Estudar, criar e rolar o feed são usos diferentes.</p></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="impactos" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+          <p class="text-xs text-clay uppercase tracking-widest mb-4">Início / Entenda / Impactos</p>
+          <h2 class="font-display text-3xl md:text-4xl font-light reveal">Quando o uso começa a interferir?</h2>
+          <p class="mt-4 text-cocoa max-w-2xl reveal">Passar tempo diante de telas não é, por si só, um problema. Vale observar quando o uso começa a ocupar espaço de outras partes da vida.</p>
+          <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article class="bg-linen border border-sand/40 rounded-2xl p-6 reveal">
+              <svg class="w-8 h-8 text-cocoa" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+              <h3 class="mt-4 font-semibold">Sono</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">O uso de dispositivos no período que antecede o sono pode se associar a horários mais tardios para dormir. O tipo de atividade e o horário importam tanto quanto a duração.</p>
+            </article>
+            <article class="bg-linen border border-sand/40 rounded-2xl p-6 reveal">
+              <svg class="w-8 h-8 text-cocoa" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+              <h3 class="mt-4 font-semibold">Atenção</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">Notificações e mudanças constantes de conteúdo podem interromper atividades que exigem concentração. O contexto de uso faz diferença.</p>
+            </article>
+            <article class="bg-linen border border-sand/40 rounded-2xl p-6 reveal">
+              <svg class="w-8 h-8 text-cocoa" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C7 17 3 13.5 3 9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-9 12z"/></svg>
+              <h3 class="mt-4 font-semibold">Relações e bem-estar</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">Longos períodos conectados podem competir com convivência, movimento e momentos de descanso. Observar esses espaços ajuda a compreender o próprio equilíbrio.</p>
+            </article>
+            <article class="bg-linen border border-sand/40 rounded-2xl p-6 reveal">
+              <svg class="w-8 h-8 text-cocoa" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 12h4l3-8 4 16 3-8h6"/></svg>
+              <h3 class="mt-4 font-semibold">Corpo e movimento</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">Períodos longos sentado podem reduzir o tempo dedicado a atividades físicas. Pausas e movimentos simples ao longo do dia fazem diferença.</p>
+            </article>
+            <article class="bg-linen border border-sand/40 rounded-2xl p-6 reveal">
+              <svg class="w-8 h-8 text-cocoa" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <h3 class="mt-4 font-semibold">Saúde ocular</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">Permanecer muito tempo focado em telas pode estar associado a desconforto visual e fadiga. Pausas regulares ajudam a aliviar os olhos.</p>
+            </article>
+            <article class="bg-cream border border-sand rounded-2xl p-6 reveal">
+              <h3 class="font-semibold">Observe</h3>
+              <p class="mt-2 text-sm text-cocoa leading-relaxed">Você costuma continuar usando a tela mesmo quando pretendia parar? Deixa tarefas importantes para depois? Esses sinais não são um diagnóstico — são pontos de partida para reflexão.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="economia" class="py-20 px-6 bg-bark text-linen">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="font-display text-3xl md:text-4xl font-light reveal">Por que é tão difícil parar de rolar?</h2>
+          <p class="mt-4 text-sand max-w-2xl mx-auto reveal">Muitos serviços digitais são projetados para facilitar o acesso contínuo a novos conteúdos. Entender esses mecanismos faz parte da educação digital.</p>
+          <div class="mt-12 flex flex-wrap justify-center gap-3 text-sm reveal">
+            <span class="border border-sand/40 rounded-full px-5 py-2">Usuário</span><span class="text-sand self-center">→</span>
+            <span class="border border-sand/40 rounded-full px-5 py-2">Plataforma</span><span class="text-sand self-center">→</span>
+            <span class="border border-sand/40 rounded-full px-5 py-2">Conteúdo</span><span class="text-sand self-center">→</span>
+            <span class="border border-sand/40 rounded-full px-5 py-2">Atenção</span><span class="text-sand self-center">→</span>
+            <span class="border border-sand/40 rounded-full px-5 py-2">Dados e receita</span>
+          </div>
+          <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+            <div class="bg-cocoa/40 rounded-2xl p-5 reveal"><h3 class="font-semibold">Notificações</h3><p class="mt-1 text-sm text-sand">Convites para retornar à tela, mesmo sem uma decisão consciente.</p></div>
+            <div class="bg-cocoa/40 rounded-2xl p-5 reveal"><h3 class="font-semibold">Rolagem infinita</h3><p class="mt-1 text-sm text-sand">Feeds que não têm fim natural podem favorecer sessões prolongadas.</p></div>
+            <div class="bg-cocoa/40 rounded-2xl p-5 reveal"><h3 class="font-semibold">Autoplay</h3><p class="mt-1 text-sm text-sand">Reprodução automática reduz a pausa entre uma escolha e a próxima.</p></div>
+            <div class="bg-cocoa/40 rounded-2xl p-5 reveal"><h3 class="font-semibold">Recomendações</h3><p class="mt-1 text-sm text-sand">Sistemas sugerem conteúdos com base nas suas interações anteriores.</p></div>
+            <div class="bg-cocoa/40
